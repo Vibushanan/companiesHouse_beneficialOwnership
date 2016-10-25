@@ -11,13 +11,30 @@ mongodb:
         - mongodata
     command: --smallfiles
   
-  
+postgresdata:
+    image: busybox
+    volumes: 
+        - /var/lib/postgresql/data
+
+postgres:
+    image: postgres
+    environment:
+        - POSTGRES_PASSWORD=PGPass
+    ports:
+        - "5432:5432"
+    volumes_from:
+        - postgresdata
+    
 companieshousebeneficialownership:
     image: jupyter/scipy-notebook
+    user: root
+    environment:
+        - GRANT_SUDO=yes
     ports:
         - "9988:8888"
     links:
         - mongodb:mongodb
+        - postgres:postgres
     volumes:
         - .:/home/jovyan/work
     
