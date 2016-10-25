@@ -1,8 +1,25 @@
 # companiesHouse_beneficialOwnership
-Doodles for working with Companies House Beneficial Ownership Register Data
+Doodles for working with Companies House Beneficial Ownership Register Data.
+
+This repo creates a set of linked Docker containers to provide a working environment for exploring company data.
+
+The configuration includes:
+
+- a Jupyter notebook server for writing reproducible analysis scripts
+- a mongodb container (handy for UK Companies House beneficial ownership JSON data)
+- a PostgreSQL container, eg for Companies House company info
 
 
-If you have `docker` and `docker-compose` installed, should be able ti just run:
+I also tried to add in a third party neo4j container seeded with Panama Papers data, but this caused even more memory issues...:-( See the `neo4j_panamapapers` folder.
+
+I assume you have `docker` and `docker-compose` installed.
+
+I needed to up the spec of my docker-machine to run this:
+
+`docker-machine  rm default`
+`docker-machine -D create -d virtualbox --virtualbox-disk-size "35000"  --virtualbox-memory 2048 default`
+
+You should now be able to just run:
 
 `docker-compose up -d`
 

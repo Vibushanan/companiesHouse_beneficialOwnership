@@ -24,6 +24,16 @@ postgres:
         - "5432:5432"
     volumes_from:
         - postgresdata
+        
+
+#neo4j:
+#  image: ryguyrg/neo4j-panama-papers
+#  ports:
+#    - "7474:7474"
+#    - "1337:1337"
+#  volumes:
+#    - /opt/data
+
     
 companieshousebeneficialownership:
     image: jupyter/scipy-notebook
@@ -35,6 +45,7 @@ companieshousebeneficialownership:
     links:
         - mongodb:mongodb
         - postgres:postgres
+        #- neo4j:neo4j
     volumes:
         - .:/home/jovyan/work
     
