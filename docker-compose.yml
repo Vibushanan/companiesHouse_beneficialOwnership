@@ -1,0 +1,23 @@
+mongodata:
+    image: busybox
+    volumes: 
+        - /data/db
+
+mongodb:
+    image: mongo
+    ports:
+        - "27107:27107"
+    volumes_from:
+        - mongodata
+    command: --smallfiles
+  
+  
+companieshousebeneficialownership:
+    image: jupyter/scipy-notebook
+    ports:
+        - "9988:8888"
+    links:
+        - mongodb:mongodb
+    volumes:
+        - .:/home/jovyan/work
+    
