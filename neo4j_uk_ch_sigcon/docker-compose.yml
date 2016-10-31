@@ -1,0 +1,35 @@
+#visit 7474 and change the default password - eg to: neo4jch
+neo4jch:
+  image: neo4j
+  ports:
+    - "7474:7474"
+    - "1337:1337"
+  volumes:
+    - /opt/data
+    
+jupyterscipyneoch:
+  image: jupyter/scipy-notebook
+  ports:
+    - "8890:8888"
+  links:
+    - neo4jch:neo4j
+  volumes:
+    - ./notebooks:/home/jovyan/work
+    
+#rstudio:
+#  image: rocker/rstudio 
+#  ports:
+#    - "8787:8787"
+#  links:
+#    - neo4j:neo4j
+#  volumes:
+#    - ./rstudio:/home/rstudio
+    
+#jupyterIR:
+#  image: jupyter/r-notebook
+#  ports:
+#    - "8889:8888"
+#  links:
+#    - neo4j:neo4j
+#  volumes:
+#    - ./notebooks:/home/jovyan/work
