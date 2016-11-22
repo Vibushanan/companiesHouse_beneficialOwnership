@@ -12,6 +12,7 @@ Note - there seems to be a problem running newly downloaded versions of docker o
 
 The following `docker-compose.yml` file contents will download and install 
 
+```
 #----------------- START docker-compose.yml ------------------
 #mongodata:
 #    image: busybox
@@ -65,6 +66,7 @@ datadive:
         - .:/home/jovyan/work
 
 #----------------- END docker-compose.yml ------------------
+```
 
 Download and install Kitematic. From the bottom right hand corner of Kitematic you can open a Docker command line. Change directory to the directory containing the `docker-compose.yml` file and run the command:
 
