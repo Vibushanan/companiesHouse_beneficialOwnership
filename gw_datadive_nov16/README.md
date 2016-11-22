@@ -1,0 +1,3 @@
+# Notes from Global Witness / DataKind Datadive, November 2016
+
+Various notes and fragments...
