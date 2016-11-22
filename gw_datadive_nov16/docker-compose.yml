@@ -1,0 +1,51 @@
+#mongodata:
+#    image: busybox
+#    volumes: 
+#        - /data/db
+#
+#mongodb:
+#    image: mongo
+#    ports:
+#        - "27107:27107"
+#    volumes_from:
+#        - mongodata
+#    command: --smallfiles
+#  
+postgresdatadd:
+    image: busybox
+    volumes: 
+        - /var/lib/postgresql/data
+
+postgresdd:
+    image: postgres #mdillon/postgis 
+    environment:
+        - POSTGRES_PASSWORD=PGPass
+    ports:
+        - "5432:5432"
+    volumes_from:
+        - postgresdatadd
+        
+
+#neo4j:
+#  image: ryguyrg/neo4j-panama-papers
+#  ports:
+#    - "7474:7474"
+#    - "1337:1337"
+#  volumes:
+#    - /opt/data
+
+    
+datadive:
+    image: jupyter/scipy-notebook
+    user: root
+    environment:
+        - GRANT_SUDO=yes
+    ports:
+        - "9988:8888"
+    links:
+        #- mongodb:mongodb
+        - postgresdd:postgres
+        #- neo4j:neo4j
+    volumes:
+        - .:/home/jovyan/work
+    
